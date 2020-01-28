@@ -18,6 +18,7 @@ We use [SemVer](http://semver.org/) for versioning. For the versions available, 
 * **Yuancheng Xu** 
 * **Dan Kojis** 
 * **Min Tan** 
+* **Athanasse Zafirov** 
 * **Christina Ramirez**  
 
 ## License
