@@ -3,6 +3,7 @@
 #' @param x a tree object.
 #' @param y train or test set.
 #' @return names of splitting features extracted from tree object.
+#' @import pre
 get_split_names = function(tree,data){
 
   # path: the string that contains all the node information
