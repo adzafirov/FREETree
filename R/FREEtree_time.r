@@ -44,7 +44,7 @@
 #' @param alpha_select alpha used in selection step.
 #' @param alpha_predict alpha used in prediction step.
 #' @return a glmertree object (trained tree).
-
+#' @import(WGCNA)
 FREEtree_time = function(data, fixed_regress, fixed_split, var_select,
                          power, minModuleSize, cluster, maxdepth_factor_screen, maxdepth_factor_select,
                          Fuzzy, minsize_multiplier, alpha_screen, alpha_select, alpha_predict) {
@@ -54,7 +54,7 @@ FREEtree_time = function(data, fixed_regress, fixed_split, var_select,
   # 'grey' 'This function performs automatic network construction and
   # module detection on large expression datasets in a block-wise
   # manner.'  !!! attention needs to be paid to minModuleSize
-  net = WGCNA::blockwiseModules(data_WGCNA, power = power, TOMType = "unsigned",
+  net = blockwiseModules(data_WGCNA, power = power, TOMType = "unsigned",
                          minModuleSize = minModuleSize, reassignThreshold = 0, mergeCutHeight = 0.25,
                          numericLabels = FALSE, pamRespectsDendro = FALSE, verbose = 0)
 

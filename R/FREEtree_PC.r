@@ -42,8 +42,7 @@
 #' @param alpha_select alpha used in selection step.
 #' @param alpha_predict alpha used in prediction step.
 #' @return a glmertree object (trained tree).
-
-
+#' @import(WGCNA)
 FREEtree_PC = function(data, fixed_split, var_select, power, minModuleSize,
                        cluster, maxdepth_factor_screen, maxdepth_factor_select, Fuzzy, minsize_multiplier,
                        alpha_screen, alpha_select, alpha_predict) {
