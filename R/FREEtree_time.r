@@ -54,7 +54,7 @@ FREEtree_time = function(data, fixed_regress, fixed_split, var_select,
   # 'grey' 'This function performs automatic network construction and
   # module detection on large expression datasets in a block-wise
   # manner.'  !!! attention needs to be paid to minModuleSize
-  net = blockwiseModules(data_WGCNA, power = power, TOMType = "unsigned",
+  net = WGCNA::blockwiseModules(data_WGCNA, power = power, TOMType = "unsigned",
                          minModuleSize = minModuleSize, reassignThreshold = 0, mergeCutHeight = 0.25,
                          numericLabels = FALSE, pamRespectsDendro = FALSE, verbose = 0)
 
