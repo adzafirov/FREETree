@@ -51,7 +51,7 @@ FREEtree_PC = function(data, fixed_split, var_select, power, minModuleSize,
   data_WGCNA = data[var_select]
   # Must set numericLabels = FALSE so that it uses actual colors like
   # 'grey'
-  net = blockwiseModules(data_WGCNA, power = power, TOMType = "unsigned",
+  net = WGCNA::blockwiseModules(data_WGCNA, power = power, TOMType = "unsigned",
                          minModuleSize = minModuleSize, reassignThreshold = 0, mergeCutHeight = 0.25,
                          numericLabels = FALSE, pamRespectsDendro = FALSE, verbose = 0)
   # the correspondance betweeen feature names and colors
