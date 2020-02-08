@@ -22,20 +22,3 @@ Encoding: UTF-8
 LazyData: true
 Imports: glmertree, pre, WGCNA
 RoxygenNote: 7.0.2
-RemoteType: github
-RemoteHost: api.github.com
-RemoteRepo: FREEtree
-RemoteUsername: adzafirov
-RemoteRef: master
-RemoteSha: e0bf1379e7ae8b04e829681af37ecce1dcf41cc5
-GithubRepo: FREEtree
-GithubUsername: adzafirov
-GithubRef: master
-GithubSHA1: e0bf1379e7ae8b04e829681af37ecce1dcf41cc5
-NeedsCompilation: no
-Packaged: 2020-02-08 12:41:29 UTC; canth
-Author: Yuancheng Xu [aut],
-  Athanasse Zafirov [cre],
-  Christina Ramirez [aut]
-Maintainer: Athanasse Zafirov <zafirov@gmail.com>
-Built: R 3.6.1; ; 2020-02-08 12:41:30 UTC; windows
