@@ -6,7 +6,8 @@ FREEtree = function(data,fixed_regress=NULL,fixed_split=NULL,var_select=NULL,
                     power=6, minModuleSize = 1, cluster,maxdepth_factor_screen=0.04,
                     maxdepth_factor_select=0.5,Fuzzy=TRUE,minsize_multiplier = 5,
                     alpha_screen=0.2, alpha_select=0.2, alpha_predict=0.05){
-    ### if there are no features to select, just use fixed_regress and fixed_split      ### no need to filter, just use GLMM tree right away
+  ### if there are no features to select, just use fixed_regress and fixed_split      
+  ### no need to filter, just use GLMM tree right away
     if(length(var_select)==0){
         if (length(fixed_regress)==0){
             if (length(fixed_split)==0){
