@@ -9,10 +9,6 @@ FREEtree, a tree-based method for high dimensional longitudinal data with correl
 
 To be completed after CRAN submission.
 
-## Versioning
-
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
-
 ## Authors
 
 * **Yuancheng Xu** 
@@ -25,5 +21,4 @@ We use [SemVer](http://semver.org/) for versioning. For the versions available, 
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
 
-## Acknowledgments
 
