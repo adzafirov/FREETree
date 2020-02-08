@@ -1,0 +1,10 @@
+FREEtree                Initial FREEtree call which then calls actual
+                        FREEtree methods depending on parameters being
+                        passed through.
+FREEtree_PC             Version of FREEtree called when fixed_regress
+                        is NULL, uses principal components (PC) as
+                        regressors for non-grey modules.
+FREEtree_time           Version of FREEtree called when var_select and
+                        fixed_regress are specified,
+get_split_names         Method for extracting names of splitting
+                        features used in a tree.
