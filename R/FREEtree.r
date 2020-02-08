@@ -45,8 +45,8 @@
 #' @param alpha_select alpha used in selection step.
 #' @param alpha_predict alpha used in prediction step.
 #' @return a glmertree object (trained tree).
-
-FREEtree = function(data, fixed_regress = NULL, fixed_split = NULL, var_select = NULL,
+#' @export
+FREEtree <- function(data, fixed_regress = NULL, fixed_split = NULL, var_select = NULL,
                     power = 6, minModuleSize = 1, cluster, maxdepth_factor_screen = 0.04,
                     maxdepth_factor_select = 0.5, Fuzzy = TRUE, minsize_multiplier = 5,
                     alpha_screen = 0.2, alpha_select = 0.2, alpha_predict = 0.05) {

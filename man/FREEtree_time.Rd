@@ -51,7 +51,7 @@ maxdepth_factor_select*(#screened features). Default is 0.6. for the
 maxdepth of the prediction tree (final tree), maxdepth is set to the length
 of the split_var (fixed+chosen ones).}
 
-\item{Fuzzy}{boolean to indicate desire to screen like Fuzzy Forest if Fuzzy
+\item{Fuzzy}{boolean to indicate desire to screen like \href{https://cran.r-project.org/web/packages/fuzzyforest/fuzzyforest.pdf}{Fuzzy Forest} if Fuzzy
 = TRUE; if Fuzzy= FALSE, first screen within non-grey modules and then
 select the final non-grey features within the selected ones from each
 non-grey module; Use this final non-grey features as regressors (plus
