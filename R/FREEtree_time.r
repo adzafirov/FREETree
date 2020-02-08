@@ -45,6 +45,7 @@
 #' @param alpha_predict alpha used in prediction step.
 #' @return a glmertree object (trained tree).
 #' @import WGCNA
+#' @import glmertree
 FREEtree_time = function(data, fixed_regress, fixed_split, var_select,
                          power, minModuleSize, cluster, maxdepth_factor_screen, maxdepth_factor_select,
                          Fuzzy, minsize_multiplier, alpha_screen, alpha_select, alpha_predict) {
