@@ -1,0 +1,24 @@
+Package: FREEtree
+Type: Package
+Title: Tree Method For High Dimensional Longitudinal Data
+Version: 0.1.0
+Authors@R: c(
+		person("Yuancheng", "Xu", email = "xuyuancheng0@gmail.com", role = c("aut")),
+		person("Athanasse", "Zafirov", email = "zafirov@gmail.com", role = c("cre")),
+		person("Christina", "Ramirez", email = "zafirov@gmail.com", role = c("aut")))
+Description: FREEtree, a tree-based method for high dimensional longitudinal data with 
+    correlated features. FREEtree deals with longitudinal data by using a 
+    piecewise random effect model. It also exploits the network structure 
+    of the features, by first clustering them using Weighted Gene Coexpression 
+    Network Analysis (WGCNA). It then conducts a screening step within each 
+    cluster of features and a selecting step among the surviving features, 
+    which provides a relatively unbiased way to do feature selection. By 
+    using dominant principle components as regression variables at each 
+    leaf and the original features as splitting variables at splitting nodes, 
+    FREEtree maintains interpretability and improves computational efficiency.
+Depends: R (>= 3.1.0)
+License: CC0
+Encoding: UTF-8
+LazyData: true
+Imports: glmertree, pre, WGCNA
+RoxygenNote: 7.0.2
