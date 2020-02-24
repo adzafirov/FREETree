@@ -44,8 +44,7 @@
 #' @import WGCNA
 #' @import glmertree
 #' @return a glmertree object (trained tree).
-
-
+#' @export
 FREEtree_PC = function(data, fixed_split, var_select, power, minModuleSize,
                        cluster, maxdepth_factor_screen, maxdepth_factor_select, Fuzzy, minsize_multiplier,
                        alpha_screen, alpha_select, alpha_predict) {
