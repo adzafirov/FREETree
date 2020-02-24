@@ -81,7 +81,6 @@ using glmer's implementation.}
 }
 \value{
 a glmertree object (trained tree).
-dictionary' with keys=name of color,values=names of features of that color
 }
 \description{
 Version of FREEtree called when var_select and fixed_regress are specified,
