@@ -5,7 +5,7 @@ Version: 0.1.0
 Authors@R: c(
 		person("Yuancheng", "Xu", email = "xuyuancheng0@gmail.com", role = c("aut")),
 		person("Athanasse", "Zafirov", email = "zafirov@gmail.com", role = c("cre")),
-		person("Christina", "Ramirez", email = "zafirov@gmail.com", role = c("aut")))
+		person("Christina", "Ramirez", email = "cr@ucla.edu", role = c("aut")))
 Description: FREEtree, a tree-based method for high dimensional longitudinal data with 
     correlated features. FREEtree deals with longitudinal data by using a 
     piecewise random effect model. It also exploits the network structure 
