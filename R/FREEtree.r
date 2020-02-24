@@ -45,6 +45,7 @@
 #' @param alpha_select alpha used in selection step.
 #' @param alpha_predict alpha used in prediction step.
 #' @return a glmertree object (trained tree).
+#'
 #' @export
 FREEtree <- function(data, fixed_regress = NULL, fixed_split = NULL, var_select = NULL,
                     power = 6, minModuleSize = 1, cluster, maxdepth_factor_screen = 0.04,
