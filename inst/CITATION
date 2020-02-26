@@ -1,0 +1,22 @@
+citHeader("To cite lubridate in publications use:")
+
+citEntry(entry = "Article",
+  title        = "FREEtree: A Tree-based Approach for High Dimensional Longitudinal Data With Correlated Features",
+  author       = personList(as.person("Yuancheng Xu"),
+                   as.person("Athanasse Zafirov"),
+                   as.person("Christina Ramirez"),
+                   as.person("Dan Kojis"),
+                   as.person("Min Tan")),
+  journal      = "Working Paper",
+  year         = "2020",
+  volume       = "",
+  number       = "",
+  pages        = "",
+  url          = "",
+
+    textVersion  =
+  paste("Yuancheng Xu, Athanasse Zafirov, Dan Kojis, Min Tan, Christina Ramirez (2020).",
+        "FREEtree: A Tree-based Approach for High Dimensional Longitudinal Data With Correlated Features.",
+        "WP")
+
+)
