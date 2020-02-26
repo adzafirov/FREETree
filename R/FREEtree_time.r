@@ -11,7 +11,7 @@
 #'   regression and splitting.
 #' @param power soft thresholding power parameter of WGCNA.
 #' @param minModuleSize minimum possible module size parameter of WGCNA.
-#' @param cluster: the variable name of each cluster (in terms of random effect)
+#' @param cluster the variable name of each cluster (in terms of random effect)
 #'   using glmer's implementation.
 #' @param Fuzzy boolean to indicate desire to screen like \href{https://cran.r-project.org/web/packages/fuzzyforest/fuzzyforest.pdf}{Fuzzy Forest} if Fuzzy
 #'   = TRUE; if Fuzzy= FALSE, first screen within non-grey modules and then
@@ -45,6 +45,7 @@
 #' @param alpha_predict alpha used in prediction step.
 #' @import WGCNA
 #' @import glmertree
+#' @importFrom stats as.formula
 #' @return a glmertree object (trained tree).
 
 FREEtree_time <- function(data, fixed_regress, fixed_split, var_select,
