@@ -33,7 +33,9 @@ regression and splitting.}
 
 \item{power}{soft thresholding power parameter of WGCNA.}
 
-\item{minModuleSize}{minimum possible module size parameter of WGCNA.}
+\item{minModuleSize}{WGCNA's minimum module size parameter.}
+
+\item{cluster}{the variable name of each cluster (in terms of random effect) using glmer's implementation.}
 
 \item{maxdepth_factor_screen}{when selecting features from one module, the
 maxdepth of the glmertree is set to ceiling function of
@@ -71,9 +73,6 @@ alpha and decrease minsize_multiplier at the same time.}
 \item{alpha_select}{alpha used in selection step.}
 
 \item{alpha_predict}{alpha used in prediction step.}
-
-\item{cluster:}{the variable name of each cluster (in terms of random effect)
-using glmer's implementation.}
 }
 \value{
 a glmertree object (trained tree).

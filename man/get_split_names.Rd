@@ -7,9 +7,9 @@
 get_split_names(tree, data)
 }
 \arguments{
-\item{x}{a tree object.}
+\item{tree}{a tree object.}
 
-\item{y}{train or test set.}
+\item{data}{train or test set.}
 }
 \value{
 names of splitting features extracted from tree object.

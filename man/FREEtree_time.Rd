@@ -39,6 +39,9 @@ regression and splitting.}
 
 \item{minModuleSize}{minimum possible module size parameter of WGCNA.}
 
+\item{cluster}{the variable name of each cluster (in terms of random effect)
+using glmer's implementation.}
+
 \item{maxdepth_factor_screen}{when selecting features from one module, the
 maxdepth of the glmertree is set to ceiling function of
 maxdepth_factor_screen*(features in that module). Default is 0.04.}
@@ -75,9 +78,6 @@ alpha and decrease minsize_multiplier at the same time.}
 \item{alpha_select}{alpha used in selection step.}
 
 \item{alpha_predict}{alpha used in prediction step.}
-
-\item{cluster:}{the variable name of each cluster (in terms of random effect)
-using glmer's implementation.}
 }
 \value{
 a glmertree object (trained tree).
