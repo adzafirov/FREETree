@@ -2,8 +2,8 @@
 #' components (PC) as regressors for non-grey modules.
 #'
 #' @param data data to train or test FREEtree on.
-#' @param fixed_split user specified char vector of features to be used in
-#'   splitting with certainty.
+#' @param consider_split user specified char vector of features that will be considered for
+#'   splitting in the final tree and will not be filtered out in the screening step.
 #' @param var_select a char vector containing features to be selected. These
 #'   features will be clustered by WGCNA and the chosen ones will be used in
 #'   regression and splitting.
@@ -48,7 +48,7 @@
 #' @importFrom stats as.formula
 #' @return a glmertree object (trained tree).
 
-FREEtree_PC <- function(data, fixed_split, var_select, power, minModuleSize,
+FREEtree_PC <- function(data, consider_split, var_select, power, minModuleSize,
                        cluster, maxdepth_factor_screen, maxdepth_factor_select, Fuzzy, minsize_multiplier,
                        alpha_screen, alpha_select, alpha_predict) {
   # Cluster var_select
@@ -90,7 +90,7 @@ FREEtree_PC <- function(data, fixed_split, var_select, power, minModuleSize,
     # selected features for splitting and regression variables
 
     for (name in module_names) {
-      split_var = c(module_dic[[name]], fixed_split)
+      split_var = c(module_dic[[name]], consider_split)
       maxdepth = ceiling(maxdepth_factor_screen * length(split_var))
       # use eigengene as regressor
       if (name == "grey") {
@@ -119,7 +119,7 @@ FREEtree_PC <- function(data, fixed_split, var_select, power, minModuleSize,
       cat("After screening within modules ", final_var, "\n")
       # select features again use all selected features as split_var with no
       # regressors
-      split_var = c(final_var, fixed_split)
+      split_var = c(final_var, consider_split)
       maxdepth = ceiling(maxdepth_factor_select * length(split_var))
       Formula = as.formula(paste("y~", "1", "|", cluster, "|", paste(split_var,
                                                                      collapse = "+")))
@@ -134,7 +134,7 @@ FREEtree_PC <- function(data, fixed_split, var_select, power, minModuleSize,
     }
 
     # use the final features as split&regression variables
-    split_var = c(final_var, fixed_split)
+    split_var = c(final_var, consider_split)
     maxdepth = length(split_var)
     Formula = as.formula(paste("y~", paste(final_var, collapse = "+"),
                                "|", cluster, "|", paste(split_var, collapse = "+")))
@@ -155,7 +155,7 @@ FREEtree_PC <- function(data, fixed_split, var_select, power, minModuleSize,
       if (name == "grey") {
         next
       }
-      split_var = c(module_dic[[name]], fixed_split)
+      split_var = c(module_dic[[name]], consider_split)
       maxdepth = ceiling(maxdepth_factor_screen * length(split_var))
       # use eigengene as regressor
       eigen_name = paste("ME", name, sep = "")
@@ -175,7 +175,7 @@ FREEtree_PC <- function(data, fixed_split, var_select, power, minModuleSize,
     if (length(imp_var) == 0) {
       # there is only one module which is grey just select from the grey
       # module
-      split_var = c(module_dic[["grey"]], fixed_split)
+      split_var = c(module_dic[["grey"]], consider_split)
       maxdepth = ceiling(maxdepth_factor_screen * length(split_var))
       regress_var = "1"
       Formula = as.formula(paste("y~", paste(regress_var, collapse = "+"),
@@ -190,7 +190,7 @@ FREEtree_PC <- function(data, fixed_split, var_select, power, minModuleSize,
       final_var = imp_var[[1]]
       cat("There is only one non-grey module", final_var, "\n")
       # use final_var as regressors
-      split_var = c(module_dic[["grey"]], fixed_split)
+      split_var = c(module_dic[["grey"]], consider_split)
       maxdepth = ceiling(maxdepth_factor_screen * length(split_var))
       regress_var = final_var
       Formula = as.formula(paste("y~", paste(regress_var, collapse = "+"),
@@ -209,7 +209,7 @@ FREEtree_PC <- function(data, fixed_split, var_select, power, minModuleSize,
       }
       cat("After screening from non-grey modules ", final_var, "\n")
       # now final_var contains all the non-grey screened features
-      split_var = c(final_var, fixed_split)
+      split_var = c(final_var, consider_split)
       maxdepth = ceiling(maxdepth_factor_select * length(split_var))
       regress_var = "1"
       Formula = as.formula(paste("y~", paste(regress_var, collapse = "+"),
@@ -220,7 +220,7 @@ FREEtree_PC <- function(data, fixed_split, var_select, power, minModuleSize,
       # Now final_var contains final non-grey features
       cat("Final non-grey features ", final_var, "\n")
       # use final_var as regressors and select features from grey features
-      split_var = c(module_dic[["grey"]], fixed_split)
+      split_var = c(module_dic[["grey"]], consider_split)
       maxdepth = ceiling(maxdepth_factor_screen * length(split_var))
       regress_var = final_var
       Formula = as.formula(paste("y~", paste(regress_var, collapse = "+"),
@@ -233,7 +233,7 @@ FREEtree_PC <- function(data, fixed_split, var_select, power, minModuleSize,
       cat("The final features ", final_var, "\n")
     }
     # use the final features as split&regression variables
-    split_var = c(final_var, fixed_split)
+    split_var = c(final_var, consider_split)
     maxdepth = length(split_var)
     Formula = as.formula(paste("y~", paste(final_var, collapse = "+"),
                                "|", cluster, "|", paste(split_var, collapse = "+")))
