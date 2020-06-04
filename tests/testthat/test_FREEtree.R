@@ -126,7 +126,7 @@ test_that("FREEtree_time a5 estimation", {
   # performance of test set
   mse = mean((predict(mytree,newdata=data_test,re.form=NA)-data_test$y)**2)
   print(mse)
-  expect_equal(ceiling(mse*10000), ceiling(368.456849168927*10000))
+  expect_equal(ceiling(mse/100), ceiling(368.456849168927/100))
 
 })
 
@@ -239,6 +239,6 @@ test_that("FREEtree_PC a0 estimation", {
   mse = mean((predict(mytree,newdata=data_test,re.form=NA)-data_test$y)**2)
   print(mse)
   # rounding to prevent errors from rounding
-  expect_equal(ceiling(mse*10000),ceiling(49.96691*10000))
+  expect_equal(ceiling(mse/100),ceiling(49.96691/100))
 
 })
