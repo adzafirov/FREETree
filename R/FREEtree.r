@@ -5,8 +5,8 @@
 #' @param fixed_regress user specified char vector of regressors that will never
 #'   be screened out; if fixed_regress = NULL, method uses PC as regressor at
 #'   screening step.
-#' @param consider_split user specified char vector of features that will be considered for
-#'   splitting in the final tree and will not be filtered out in the screening step.
+#' @param fixed_split user specified char vector of features to be used in
+#'   splitting with certainty.
 #' @param var_select a char vector containing features to be selected. These
 #'   features will be clustered by WGCNA and the chosen ones will be used in
 #'   regression and splitting.
@@ -48,25 +48,33 @@
 #' @param minModuleSize WGCNA's minimum module size parameter.
 #' @importFrom stats as.formula
 #' @return a glmertree object (trained tree).
+#' @examples
+#' #locate example data file
+#' load("data/data.RData")
+#' mytree = FREEtree(data,fixed_regress=c("time","time2"), fixed_split=c("treatment"),
+#'                   var_select=paste("V",1:400,sep=""), minModuleSize = 5,
+#'                   cluster="patient", Fuzzy=TRUE, maxdepth_factor_select = 0.5,
+#'                   maxdepth_factor_screen = 0.04, minsize_multiplier = 5,
+#'                   alpha_screen = 0.2, alpha_select=0.2,alpha_predict=0.05)
 #'
 #' @export
-FREEtree <- function(data, fixed_regress = NULL, consider_split = NULL, var_select = NULL,
+FREEtree <- function(data, fixed_regress = NULL, fixed_split = NULL, var_select = NULL,
                     power = 6, minModuleSize = 1, cluster, maxdepth_factor_screen = 0.04,
                     maxdepth_factor_select = 0.5, Fuzzy = TRUE, minsize_multiplier = 5,
                     alpha_screen = 0.2, alpha_select = 0.2, alpha_predict = 0.05) {
   ### if there are no features to select, just use fixed_regress and
-  ### consider_split ### no need to filter, just use GLMM tree right away
+  ### fixed_split ### no need to filter, just use GLMM tree right away
   if (length(var_select) == 0)
   {
     if (length(fixed_regress) == 0) {
-      if (length(consider_split) == 0) {
+      if (length(fixed_split) == 0) {
         stop("no features to split and regress on")
       }
       fixed_regress = "1"
     }
-    maxdepth = length(consider_split)
+    maxdepth = length(fixed_split)
     Formula = as.formula(paste("y~", paste(fixed_regress, collapse = "+"),
-                               "|", cluster, "|", paste(consider_split, collapse = "+")))
+                               "|", cluster, "|", paste(fixed_split, collapse = "+")))
     mytree = lmertree(Formula, data = data, alpha = alpha_predict,
                       maxdepth = maxdepth)
     mytree$final_selection = NULL
@@ -77,7 +85,7 @@ FREEtree <- function(data, fixed_regress = NULL, consider_split = NULL, var_sele
   if (length(fixed_regress) == 0)
   {
     cat("Use FREEtree_PC\n")
-    return(FREEtree_PC(data = data, consider_split = consider_split,
+    return(FREEtree_PC(data = data, fixed_split = fixed_split,
                        var_select = var_select, power = power, minModuleSize = minModuleSize,
                        cluster = cluster, maxdepth_factor_screen = maxdepth_factor_screen,
                        maxdepth_factor_select = maxdepth_factor_select, Fuzzy = Fuzzy,
@@ -86,7 +94,7 @@ FREEtree <- function(data, fixed_regress = NULL, consider_split = NULL, var_sele
   }  ###
   # Now we have non-empty var_select,fixed_regress
   cat("Use FREEtree_time\n")
-  return(FREEtree_time(data = data, fixed_regress = fixed_regress, consider_split = consider_split,
+  return(FREEtree_time(data = data, fixed_regress = fixed_regress, fixed_split = fixed_split,
                        var_select = var_select, power = power, minModuleSize = minModuleSize,
                        cluster = cluster, maxdepth_factor_screen = maxdepth_factor_screen,
                        maxdepth_factor_select = maxdepth_factor_select, Fuzzy = Fuzzy,
