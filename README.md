@@ -18,6 +18,7 @@ FREEtree, a tree-based method for high dimensional longitudinal data with
 * **Min Tan** 
 * **Athanasse Zafirov** 
 * **Christina Ramirez**  
+* **Mike Alvarez**
 
 ## License
 
