@@ -14,7 +14,7 @@
 #' @param minModuleSize minimum possible module size parameter of WGCNA.
 #' @param cluster the variable name of each cluster (in terms of random effect)
 #'   using glmer's implementation.
-#' @param Fuzzy boolean to indicate desire to screen like \href{https://cran.r-project.org/web/packages/fuzzyforest/fuzzyforest.pdf}{Fuzzy Forest} if Fuzzy
+#' @param Fuzzy boolean to indicate desire to screen like Fuzzy Forest if Fuzzy
 #'   = TRUE; if Fuzzy= FALSE, first screen within non-grey modules and then
 #'   select the final non-grey features within the selected ones from each
 #'   non-grey module; Use this final non-grey features as regressors (plus
@@ -50,9 +50,9 @@
 #' @return a glmertree object (trained tree).
 #' @examples
 #' #locate example data file
-#' load("data/data.RData")
+#' dataf <- system.file("data/data.RData", package="FREEtree")
 #' mytree = FREEtree(data,fixed_regress=c("time","time2"), fixed_split=c("treatment"),
-#'                   var_select=paste("V",1:400,sep=""), minModuleSize = 5,
+#'                   var_select=paste("V",1:200,sep=""), minModuleSize = 5,
 #'                   cluster="patient", Fuzzy=TRUE, maxdepth_factor_select = 0.5,
 #'                   maxdepth_factor_screen = 0.04, minsize_multiplier = 5,
 #'                   alpha_screen = 0.2, alpha_select=0.2,alpha_predict=0.05)

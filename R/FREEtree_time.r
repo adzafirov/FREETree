@@ -4,8 +4,8 @@
 #' @param fixed_regress user specified char vector of regressors that will never
 #'   be screened out; if fixed_regress = NULL, method uses PC as regressor at
 #'   screening step.
-#' @param consider_split user specified char vector of features that will be considered for
-#'   splitting in the final tree and will not be filtered out in the screening step.
+#' @param fixed_split user specified char vector of features to be used in
+#'   splitting with certainty.
 #' @param var_select a char vector containing features to be selected. These
 #'   features will be clustered by WGCNA and the chosen ones will be used in
 #'   regression and splitting.
@@ -48,7 +48,7 @@
 #' @importFrom stats as.formula
 #' @return a glmertree object (trained tree).
 
-FREEtree_time <- function(data, fixed_regress, consider_split, var_select,
+FREEtree_time <- function(data, fixed_regress, fixed_split, var_select,
                          power, minModuleSize, cluster, maxdepth_factor_screen, maxdepth_factor_select,
                          Fuzzy, minsize_multiplier, alpha_screen, alpha_select, alpha_predict) {
   # Cluster var_select
@@ -80,9 +80,9 @@ FREEtree_time <- function(data, fixed_regress, consider_split, var_select,
     # selected ones as split_var and select
 
     for (name in module_names) {
-      # in the formula, add consider_split as split_var, also include the module
+      # in the formula, add fixed_split as split_var, also include the module
       # features
-      split_var = c(module_dic[[name]], consider_split)
+      split_var = c(module_dic[[name]], fixed_split)
       maxdepth = ceiling(maxdepth_factor_screen * length(split_var))
       # use fixed_regress as regressor
       regress_var = fixed_regress
@@ -111,7 +111,7 @@ FREEtree_time <- function(data, fixed_regress, consider_split, var_select,
 
       # the final selection among all the chosen features
       regress_var = fixed_regress
-      split_var = c(final_var, consider_split)
+      split_var = c(final_var, fixed_split)
       maxdepth = ceiling(maxdepth_factor_select * length(split_var))
       Formula = as.formula(paste("y~", paste(regress_var, collapse = "+"),
                                  "|", cluster, "|", paste(split_var, collapse = "+")))
@@ -124,7 +124,7 @@ FREEtree_time <- function(data, fixed_regress, consider_split, var_select,
       cat("There is only one module, final features", final_var)
     }
     # use the final features as split&regression variables
-    split_var = c(final_var, consider_split)
+    split_var = c(final_var, fixed_split)
     maxdepth = length(split_var)
     regress_var = c(fixed_regress, final_var)
     Formula = as.formula(paste("y~", paste(regress_var, collapse = "+"),
@@ -143,7 +143,7 @@ FREEtree_time <- function(data, fixed_regress, consider_split, var_select,
       if (name == "grey") {
         next  # next loop item
       }
-      split_var = c(module_dic[[name]], consider_split)
+      split_var = c(module_dic[[name]], fixed_split)
       maxdepth = ceiling(maxdepth_factor_screen * length(split_var))
       regress_var = fixed_regress
 
@@ -161,7 +161,7 @@ FREEtree_time <- function(data, fixed_regress, consider_split, var_select,
     }  # Now imp_var contains important features from modules that are not grey
     if (length(imp_var) == 0) {
       # only grey module, no other modules
-      split_var = c(module_dic[["grey"]], consider_split)
+      split_var = c(module_dic[["grey"]], fixed_split)
       maxdepth = ceiling(maxdepth_factor_screen * length(split_var))
       regress_var = fixed_regress
       Formula = as.formula(paste("y~", paste(regress_var, collapse = "+"),
@@ -186,7 +186,7 @@ FREEtree_time <- function(data, fixed_regress, consider_split, var_select,
             "\n")
         # select from selected non-grey features
         regress_var = fixed_regress
-        split_var = c(final_var, consider_split)
+        split_var = c(final_var, fixed_split)
         maxdepth = ceiling(maxdepth_factor_select * length(split_var))
         Formula = as.formula(paste("y~", paste(regress_var, collapse = "+"),
                                    "|", cluster, "|", paste(split_var, collapse = "+")))
@@ -198,7 +198,7 @@ FREEtree_time <- function(data, fixed_regress, consider_split, var_select,
 
       # use final_var (chosen non-grey features) to select grey features
       regress_var = c(fixed_regress, final_var)
-      split_var = c(module_dic[["grey"]], consider_split)
+      split_var = c(module_dic[["grey"]], fixed_split)
       maxdepth = ceiling(maxdepth_factor_screen * length(split_var))
       Formula = as.formula(paste("y~", paste(regress_var, collapse = "+"),
                                  "|", cluster, "|", paste(split_var, collapse = "+")))
@@ -211,7 +211,7 @@ FREEtree_time <- function(data, fixed_regress, consider_split, var_select,
       cat("final features", final_var)
     }
     # use the final features as split&regression variables
-    split_var = c(final_var, consider_split)
+    split_var = c(final_var, fixed_split)
     maxdepth = length(split_var)
     regress_var = c(fixed_regress, final_var)
     Formula = as.formula(paste("y~", paste(regress_var, collapse = "+"),
